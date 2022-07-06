@@ -19,16 +19,20 @@ module.exports = {
     ],
     run: async (client, int) => {
 
-        const user = int.options.getUser("user");
-        const razon = int.options.getString("razon") || "No hay razon";
-        if(user == int.user){
-            int.reply('No puedes aislarte a ti mismo')
+        if(int.member.permissions.has("BAN_MEMBERS")){
+            const user = int.options.getUser("user");
+            const razon = int.options.getString("razon") || "No hay razon";
+            if(user == int.user){
+                int.reply('No puedes banearte a ti mismo')
+            }
+
+            const member = int.guild.members.cache.get(user.id)
+
+            member.ban({ reason:razon })
+            int.reply(`${user} ha sido baneado por`)
+        } else{
+            int.reply('Necesitas el permiso `BAN_MEMBERS` para utilizar este comando')
         }
-
-        const member = int.guild.members.cache.get(user.id)
-
-        member.ban({ reason:razon })
-        int.reply(`${user} ha sido baneado por`)
 
     }
 }

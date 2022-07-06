@@ -21,6 +21,10 @@ mongoose.connect(process.env.MONGODB, {
   console.log('Hubo un error ' + err)
 })
 
+const { DiscordTogether } = require('discord-together');
+
+client.discordTogether = new DiscordTogether(client);
+
 client.slashCommands = new Discord.Collection();
 
 const slashCommands = fs.readdirSync(path.join(__dirname, 'src/slash/cmd'));

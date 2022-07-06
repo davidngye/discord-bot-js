@@ -4,7 +4,7 @@ const tic = new TicTacTor({ language: "en", commandOptionName:"jugador2" })
 
 
 module.exports = {
-    name: 'tictactor',
+    name: 'tictactoe',
     description: 'Comando para jugar a la vieja',
     options: [
         {

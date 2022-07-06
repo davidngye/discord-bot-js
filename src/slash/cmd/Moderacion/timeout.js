@@ -30,6 +30,7 @@ module.exports = {
         const tiempo = int.options.getString("tiempo");
         const razon = int.options.getString("razon");
         if(user == int.user){
+
             int.reply('No puedes aislarte a ti mismo')
         }
 
@@ -41,6 +42,20 @@ module.exports = {
             timeInMs, razon
         )
         int.reply(`${user} ha sido aislado por ${tiempo}`)
+
+        if(int.member.permissions.has("ADMINISTRATOR")){
+            const user = int.options.getUser("user");
+            if(user == int.user){
+                int.reply('No puedes aislarte a ti mismo')
+            }
+    
+            const member = int.guild.members.cache.get(user.id)
+    
+            member.kick()
+            int.reply(`${user} ha sido expulsado`)
+        } else{
+            int.reply('Necesitas el permiso `ADMINISTRATOR` para utilizar este comando')
+        }
 
     }
 }

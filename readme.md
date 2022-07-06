@@ -1,1 +1,1 @@
-Creditos a : Kammer Ezz , DashCruft, reconlx .
+Creditos a : Kammer Ezz , DashCruft, reconlx . (Vi sus tutoriales xD)

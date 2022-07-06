@@ -13,15 +13,19 @@ module.exports = {
     ],
     run: async (client, int) => {
 
-        const user = int.options.getUser("user");
-        if(user == int.user){
-            int.reply('No puedes aislarte a ti mismo')
+        if(int.member.permissions.has("KICK_MEMBERS")){
+            const user = int.options.getUser("user");
+            if(user == int.user){
+                int.reply('No puedes aislarte a ti mismo')
+            }
+    
+            const member = int.guild.members.cache.get(user.id)
+    
+            member.kick()
+            int.reply(`${user} ha sido expulsado`)
+        } else{
+            int.reply('Necesitas el permiso `KICK_MEMBERS` para utilizar este comando')
         }
-
-        const member = int.guild.members.cache.get(user.id)
-
-        member.kick()
-        int.reply(`${user} ha sido expulsado`)
 
     }
 }
